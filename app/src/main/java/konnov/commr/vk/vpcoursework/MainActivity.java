@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -17,17 +18,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DBHelper dbHelper = new DBHelper(this);
-        ArrayList<ArrayList<String>> arrayLists = dbHelper.dbToList();
+//        DBHelper dbHelper = new DBHelper(this);
+//        ArrayList<ArrayList<String>> arrayLists = dbHelper.dbToList();
         //getting image
-        String response = arrayLists.get(0).get(3);
-        String [] byteValues = response.substring(1, response.length() - 1).split(",");
-        byte[] bytes = new byte[byteValues.length];
-        for (int i=0, len=bytes.length; i<len; i++) {
-            bytes[i] = Byte.parseByte(byteValues[i].trim());
-        }
-        bitmap = Extras.ByteArrayToBitmap(bytes);
-
+//        String response = arrayLists.get(0).get(3);
+//        String [] byteValues = response.substring(1, response.length() - 1).split(",");
+//        byte[] bytes = new byte[byteValues.length];
+//        for (int i=0, len=bytes.length; i<len; i++) {
+//            bytes[i] = Byte.parseByte(byteValues[i].trim());
+//        }
+//        bitmap = Extras.ByteArrayToBitmap(bytes);
 
         //System.out.println(arrayLists);
 
