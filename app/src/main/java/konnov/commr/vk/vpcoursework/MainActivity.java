@@ -18,26 +18,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        DBHelper dbHelper = new DBHelper(this);
-//        ArrayList<ArrayList<String>> arrayLists = dbHelper.dbToList();
-        //getting image
-//        String response = arrayLists.get(0).get(3);
-//        String [] byteValues = response.substring(1, response.length() - 1).split(",");
-//        byte[] bytes = new byte[byteValues.length];
-//        for (int i=0, len=bytes.length; i<len; i++) {
-//            bytes[i] = Byte.parseByte(byteValues[i].trim());
-//        }
-//        bitmap = Extras.ByteArrayToBitmap(bytes);
-
-        //System.out.println(arrayLists);
 
 
         //saving image
-//        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.spainpic);
-//        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-//        byte[] byteArray = stream.toByteArray();
-//        dbHelper.insertData("тестовый тур", "Испания", "Новосибирск - Барселона", byteArray, "штаны и зубная паста", "30  дней", "29 градусов", "spain.com");
+//        DBHelper dbHelper = new DBHelper(this);
+//        dbHelper.deleteDB();
+//        dbHelper.insertData("Средиземное блаженство", "Испания", "Новосибирск - Барселона", Extras.drawableToBytes(this, R.drawable.spainpic), "штаны и зубная паста", "30  дней", "29 градусов", "spain.com");
+//        dbHelper.insertData("Пицца, паста, Ватикан", "Италия", "Новосибирск - Москва - Рим", Extras.drawableToBytes(this, R.drawable.italypic), "кетчуп хайнц, ламборгини и футболка D&G", "2  недели", "25 градусов", "experienceitaly.com");
+//        dbHelper.insertData("Эта СПАРТА", "Греция", "Новосибирск - Москва - Афины", Extras.drawableToBytes(this, R.drawable.greecepic), "Копье для защиты спарты", "5 дней", "32 градуса", "thisissparta.com");
+
 
     }
 

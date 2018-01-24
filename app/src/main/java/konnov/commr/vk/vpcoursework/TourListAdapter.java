@@ -21,14 +21,16 @@ public class TourListAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<ArrayList<String>> arrayLists;
     private Bitmap[] bitmap;
+    int numberOfItems;
 
-    public  TourListAdapter(Context context){
+    public  TourListAdapter(Context context, int numberOfItems){
         this.context = context;
+        this.numberOfItems = numberOfItems;
     }
 
     @Override
     public int getCount() {
-        return 5;
+        return numberOfItems;
     }
 
     @Override
@@ -42,7 +44,7 @@ public class TourListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(int position, View view, ViewGroup viewGroup) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View rowMain = layoutInflater.inflate(R.layout.customrow, viewGroup, false);
         TextView nameTV = rowMain.findViewById(R.id.nameTextView);
@@ -55,14 +57,14 @@ public class TourListAdapter extends BaseAdapter {
         TextView websiteTV = rowMain.findViewById(R.id.websiteTextView);
         getTheList();
 
-        nameTV.setText(arrayLists.get(0).get(0));
-        countryTV.setText(arrayLists.get(0).get(1));
-        routeTV.append(arrayLists.get(0).get(2));
-        photo.setImageBitmap(bitmap[0]);
-        backpackTV.append(arrayLists.get(0).get(4));
-        durationTV.append(arrayLists.get(0).get(5));
-        weatherTV.append(arrayLists.get(0).get(6));
-        websiteTV.append(arrayLists.get(0).get(7));
+        nameTV.setText(arrayLists.get(position).get(0));
+        countryTV.setText(arrayLists.get(position).get(1));
+        routeTV.append(arrayLists.get(position).get(2));
+        photo.setImageBitmap(bitmap[position]);
+        backpackTV.append(arrayLists.get(position).get(4));
+        durationTV.append(arrayLists.get(position).get(5));
+        weatherTV.append(arrayLists.get(position).get(6));
+        websiteTV.append(arrayLists.get(position).get(7));
         return rowMain;
     }
 

@@ -87,12 +87,10 @@ public class DBHelper extends SQLiteOpenHelper{
             innerArrayList.add(c.getString(c.getColumnIndex(COLUMN_COUNTRY)));
             innerArrayList.add(c.getString(c.getColumnIndex(COLUMN_ROUTE)));
             byte[] photo;
-            try {
-                photo = c.getBlob(c.getColumnIndex(COLUMN_PHOTO));
-                innerArrayList.add(Arrays.toString(photo));
-            }catch (Exception e){
-                e.printStackTrace();
-            }
+
+            photo = c.getBlob(c.getColumnIndex(COLUMN_PHOTO));
+            innerArrayList.add(Arrays.toString(photo));
+
              ////
             innerArrayList.add(c.getString(c.getColumnIndex(COLUMN_BACKPACK)));
             innerArrayList.add(c.getString(c.getColumnIndex(COLUMN_DURATION)));
@@ -140,6 +138,13 @@ public class DBHelper extends SQLiteOpenHelper{
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
+    }
+
+    public int numberOfRows(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        long count = DatabaseUtils.queryNumEntries(db, TABLE_NAME);
+        db.close();
+        return (int) count;
     }
 
 

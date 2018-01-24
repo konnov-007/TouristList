@@ -1,5 +1,7 @@
 package konnov.commr.vk.vpcoursework;
 
+import android.database.DatabaseUtils;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,7 +17,8 @@ public class TourListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tour_list);
         listView = findViewById(R.id.listView);
-        TourListAdapter tourListAdapter = new TourListAdapter(this);
+        DBHelper dbHelper = new DBHelper(this);
+        TourListAdapter tourListAdapter = new TourListAdapter(this, dbHelper.numberOfRows());
         listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(tourListAdapter);
     }
