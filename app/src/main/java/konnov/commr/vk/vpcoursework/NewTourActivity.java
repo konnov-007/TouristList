@@ -59,7 +59,7 @@ public class NewTourActivity extends AppCompatActivity {
                     setFileName(fileName).
                     setDirectoryName("images").
                     save(bitmap);
-            dbHelper.insertData(nameET.getText().toString(), countryET.getText().toString(), routeET.getText().toString(),
+            dbHelper.insertDataIntoToursTable(nameET.getText().toString(), countryET.getText().toString(), routeET.getText().toString(),
                     fileName, backpackET.getText().toString(), durationET.getText().toString(), weatherET.getText().toString(), websiteET.getText().toString());
             Toast.makeText(this, "Сохранено", Toast.LENGTH_SHORT).show();
         }

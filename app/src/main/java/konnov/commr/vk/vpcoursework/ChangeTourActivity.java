@@ -50,7 +50,7 @@ public class ChangeTourActivity extends AppCompatActivity {
         weatherET = findViewById(R.id.weatherEditTextForChangeTour);
         websiteET = findViewById(R.id.websiteEditTextForChangeTour);
 
-        ArrayList<String> list = dbHelper.getListForRow(name, country);
+        ArrayList<String> list = dbHelper.getTourRow(name, country);
         nameTV.setText(list.get(0));
         countryTV.setText(list.get(1));
         routeET.setText("Маршрут: " + list.get(2));

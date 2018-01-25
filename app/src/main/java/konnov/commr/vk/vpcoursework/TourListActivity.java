@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,14 +26,14 @@ public class TourListActivity extends AppCompatActivity {
     void renderingTheList(){
         listView = findViewById(R.id.listView);
         dbHelper = new DBHelper(this);
-        tourListAdapter = new TourListAdapter(this, dbHelper.numberOfRows());
+        tourListAdapter = new TourListAdapter(this, dbHelper.numberOfRowsInToursTable());
         listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(tourListAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                ArrayList<ArrayList<String>> theData = dbHelper.dbToList();
+                ArrayList<ArrayList<String>> theData = dbHelper.toursTableToList();
                 Intent intent = new Intent(TourListActivity.this, ChangeTourActivity.class);
                 intent.putExtra("name", theData.get(position).get(0));
                 intent.putExtra("country", theData.get(position).get(1));
@@ -57,8 +56,8 @@ public class TourListActivity extends AppCompatActivity {
                         .setPositiveButton("Да", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        ArrayList<ArrayList<String>> theData = dbHelper.dbToList();
-                                        dbHelper.deleteItemFromDB(theData.get(itemToDelete).get(0), theData.get(itemToDelete).get(1));
+                                        ArrayList<ArrayList<String>> theData = dbHelper.toursTableToList();
+                                        dbHelper.deleteItemFromToursTable(theData.get(itemToDelete).get(0), theData.get(itemToDelete).get(1));
                                         renderingTheList();
                                     }
                                 }

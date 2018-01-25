@@ -25,7 +25,8 @@
             android:label="@string/title_activity_tour_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".NewTourActivity" />
-        <activity android:name=".ChangeTourActivity"></activity>
+        <activity android:name=".ChangeTourActivity" />
+        <activity android:name=".TravelCard"></activity>
     </application>
 
 </manifest>

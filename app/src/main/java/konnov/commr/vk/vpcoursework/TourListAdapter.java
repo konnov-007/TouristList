@@ -100,7 +100,7 @@ public class TourListAdapter extends BaseAdapter {
 
     private void getTheList(){
         DBHelper dbHelper = new DBHelper(context);
-        arrayLists = dbHelper.dbToList();
+        arrayLists = dbHelper.toursTableToList();
         bitmap = new Bitmap[arrayLists.size()];
         for(int i = 0; i < arrayLists.size(); i++){
             bitmap[i] = new ImageSaver(context).
