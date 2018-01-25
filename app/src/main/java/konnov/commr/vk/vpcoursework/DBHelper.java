@@ -17,8 +17,8 @@ import java.util.Arrays;
 
 public class DBHelper extends SQLiteOpenHelper{
 
-    private static final String DB_NAME = "notesDB";
-    private static final String TABLE_NAME = "notestable";
+    private static final String DB_NAME = "toursdb";
+    private static final String TABLE_NAME = "tourstable";
     private static final int DB_VERSION = 1;
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_NAME = "name";
@@ -101,33 +101,47 @@ public class DBHelper extends SQLiteOpenHelper{
 
 
 
-//    public void changeNote(int id, String note){
-//        id++; //incrementing it since database id starts with 1, not with 0
-//        note = "\'"+note+"\'";
-//        SQLiteDatabase db = getWritableDatabase();
-//        db.execSQL("UPDATE " + TABLE_NAME + " SET " + COLUMN_NOTE + " = " + note + " WHERE " + COLUMN_ID + " = " + id);
-////        Cursor cursor = db.rawQuery(query, null);
-////        ContentValues contentValues = new ContentValues();
-////        contentValues.put(COLUMN_NOTE, note);
-////        db.update(TABLE_NAME, contentValues, COLUMN_ID, new String[] {String.valueOf(id)});
-//
-//        //       cursor.close();
-//    }
+    public void editTour(String nameString, String countryString, String routeString, String photo, String backpackString, String durationString, String weatherString, String websiteString){
+        SQLiteDatabase db = getWritableDatabase();
+        //db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_NAME + " = '" + previousName + "' AND " + COLUMN_COUNTRY + " = '" + previousCountry + "'", null);
+//        db.execSQL(" UPDATE " + TABLE_NAME + " SET " + COLUMN_NAME + " = '" + nameString + "', " + COLUMN_COUNTRY + " = '" + countryString +
+//                "', " + COLUMN_ROUTE + " = '" + routeString + "', " + COLUMN_PHOTO + " = '" + photo + "', " + COLUMN_BACKPACK + " = '" +
+//                backpackString + "', " + COLUMN_DURATION + " = '" + durationString + "', " + COLUMN_WEATHER + " = '" + weatherString +
+//                "', " + COLUMN_WEBSITE + " = '" + websiteString + "' WHERE " + COLUMN_NAME + " = '" + nameString + "' AND " + COLUMN_COUNTRY + " = '" + countryString + "'");
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_ROUTE, routeString);
+        contentValues.put(COLUMN_PHOTO, photo); /// saving a picture
+        contentValues.put(COLUMN_BACKPACK, backpackString);
+        contentValues.put(COLUMN_DURATION, durationString);
+        contentValues.put(COLUMN_WEATHER, weatherString);
+        contentValues.put(COLUMN_WEBSITE, websiteString);
+        db.update(TABLE_NAME, contentValues, COLUMN_NAME + " = '" + nameString + "' AND " + COLUMN_COUNTRY + " = '" + countryString + "'", null);
+        db.close();
+    }
+
+    public ArrayList<String> getListForRow(String name, String country){
+        ArrayList<String> list = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_NAME + " = '" + name + "' AND " + COLUMN_COUNTRY + " = '" + country + "'";
+        Cursor c = sqLiteDatabase.rawQuery(query, null);
+        c.moveToFirst();
+        list.add(c.getString(c.getColumnIndex(COLUMN_NAME)));
+        list.add(c.getString(c.getColumnIndex(COLUMN_COUNTRY)));
+        list.add(c.getString(c.getColumnIndex(COLUMN_ROUTE)));
+        list.add(c.getString(c.getColumnIndex(COLUMN_PHOTO)));
+        list.add(c.getString(c.getColumnIndex(COLUMN_BACKPACK)));
+        list.add(c.getString(c.getColumnIndex(COLUMN_DURATION)));
+        list.add(c.getString(c.getColumnIndex(COLUMN_WEATHER)));
+        list.add(c.getString(c.getColumnIndex(COLUMN_WEBSITE)));
+        c.close();
+        return list;
+    }
 
 
-//    public void deleteItemFromDB(int index){
-//        SQLiteDatabase database = getWritableDatabase();
-//        index++;
-//        String stringId = String.valueOf(index);
-//        database.delete(TABLE_NAME, COLUMN_ID + "=" + stringId, null);
-//
-//        long lastID = DatabaseUtils.longForQuery(database, "SELECT MAX(_id) FROM " + TABLE_NAME, null);
-//        if (lastID > index)
-//            database.execSQL("UPDATE " + TABLE_NAME + " SET _id = " + index + " WHERE _id = " + lastID);
-//        if(lastID == 0)
-//            deleteDB();
-//
-//    }
+    public void deleteItemFromDB(String name, String country){
+        SQLiteDatabase database = getWritableDatabase();
+        database.delete(TABLE_NAME, COLUMN_NAME + " = '" + name + "' AND " + COLUMN_COUNTRY + " = '" + country + "'", null);
+    }
 
     public void deleteDB(){
         SQLiteDatabase db = getWritableDatabase();

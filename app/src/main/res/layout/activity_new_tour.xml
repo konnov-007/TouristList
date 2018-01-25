@@ -22,11 +22,11 @@
         android:onClick="addPicture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/countryEditText"
+        app:layout_constraintTop_toBottomOf="@+id/countryEditTextForNewTour"
         android:focusable="true" />
 
     <EditText
-        android:id="@+id/nameEditText"
+        android:id="@+id/nameEditTextForNewTour"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -42,7 +42,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/countryEditText"
+        android:id="@+id/countryEditTextForNewTour"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -55,10 +55,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/nameEditTextForNewTour" />
 
     <EditText
-        android:id="@+id/routeEditText"
+        android:id="@+id/routeEditTextForNewTour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageViewForNewTour" />
 
     <EditText
-        android:id="@+id/durationEditText"
+        android:id="@+id/durationEditTextForNewTour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -84,10 +84,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/routeEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/routeEditTextForNewTour" />
 
     <EditText
-        android:id="@+id/weatherEditText"
+        android:id="@+id/weatherEditTextForNewTour"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -99,10 +99,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/routeEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/routeEditTextForNewTour" />
 
     <EditText
-        android:id="@+id/websiteEditText"
+        android:id="@+id/websiteEditTextForNewTour"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -115,10 +115,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.01"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backpackEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/backpackEditTextForNewTour" />
 
     <EditText
-        android:id="@+id/backpackEditText"
+        android:id="@+id/backpackEditTextForNewTour"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -144,5 +144,5 @@
         android:onClick="addTour"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/websiteEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/websiteEditTextForNewTour" />
 </android.support.constraint.ConstraintLayout>

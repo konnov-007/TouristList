@@ -13,16 +13,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.Random;
 
-public class NewTourActivity extends AppCompatActivity {
-
-
-    EditText nameET;
-    EditText countryET;
+public class ChangeTourActivity extends AppCompatActivity {
+    TextView nameTV;
+    TextView countryTV;
     EditText routeET;
     ImageView photo;
     EditText backpackET;
@@ -30,24 +30,43 @@ public class NewTourActivity extends AppCompatActivity {
     EditText weatherET;
     EditText websiteET;
     Bitmap bitmap;
-
+    String name;
+    String country;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_tour);
-        nameET = findViewById(R.id.nameEditTextForNewTour);
-        countryET = findViewById(R.id.countryEditTextForNewTour);
-        routeET = findViewById(R.id.routeEditTextForNewTour);
-        photo = findViewById(R.id.imageViewForNewTour);
-        backpackET = findViewById(R.id.backpackEditTextForNewTour);
-        durationET = findViewById(R.id.durationEditTextForNewTour);
-        weatherET = findViewById(R.id.weatherEditTextForNewTour);
-        websiteET = findViewById(R.id.websiteEditTextForNewTour);
+        setContentView(R.layout.activity_change_tour);
+        Intent intent = getIntent();
+        name = intent.getStringExtra("name");
+        country = intent.getStringExtra("country");
+        DBHelper dbHelper = new DBHelper(this);
+        nameTV = findViewById(R.id.nameTextViewForChangeTour);
+        countryTV = findViewById(R.id.countryTextViewForChangeTour);
+        routeET = findViewById(R.id.routeEditTextForChangeTour);
+        photo = findViewById(R.id.imageViewForChangeTour);
+        backpackET = findViewById(R.id.backpackEditTextForChangeTour);
+        durationET = findViewById(R.id.durationEditTextForChangeTour);
+        weatherET = findViewById(R.id.weatherEditTextForChangeTour);
+        websiteET = findViewById(R.id.websiteEditTextForChangeTour);
+
+        ArrayList<String> list = dbHelper.getListForRow(name, country);
+        nameTV.setText(list.get(0));
+        countryTV.setText(list.get(1));
+        routeET.setText("Маршрут: " + list.get(2));
+        bitmap = new ImageSaver(this).
+                setFileName(list.get(3)).
+                setDirectoryName("images").
+                load();
+        photo.setImageBitmap(bitmap);
+        backpackET.setText("Взять в дорогу: " + list.get(4));
+        durationET.setText("Длительность: " + list.get(5));
+        weatherET.setText("Погода: " + list.get(6));
+        websiteET.setText("Сайт: " + list.get(7));
     }
 
-    public void addTour(View view) {
-        if(nameET.getText().toString().isEmpty() || countryET.getText().toString().isEmpty() || routeET.getText().toString().isEmpty() ||
+    public void changeTour(View view) {
+        if(routeET.getText().toString().isEmpty() ||
                 /*not working*/photo.getDrawable() == getResources().getDrawable(R.drawable.addpicture) || backpackET.getText().toString().isEmpty() || durationET.getText().toString().isEmpty() ||
                 weatherET.getText().toString().isEmpty() || websiteET.getText().toString().isEmpty()) {
             Toast.makeText(this, "Заполните все поля", Toast.LENGTH_SHORT).show();
@@ -59,13 +78,15 @@ public class NewTourActivity extends AppCompatActivity {
                     setFileName(fileName).
                     setDirectoryName("images").
                     save(bitmap);
-            dbHelper.insertData(nameET.getText().toString(), countryET.getText().toString(), routeET.getText().toString(),
+            dbHelper.editTour(name, country, routeET.getText().toString(),
                     fileName, backpackET.getText().toString(), durationET.getText().toString(), weatherET.getText().toString(), websiteET.getText().toString());
             Toast.makeText(this, "Сохранено", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void addPicture(View view) {
+
+
+    public void changePicture(View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
                 requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
@@ -104,7 +125,7 @@ public class NewTourActivity extends AppCompatActivity {
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 photo.setImageBitmap(bitmap);
             } catch (Exception e) {
-                Toast.makeText(NewTourActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(ChangeTourActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 e.printStackTrace();
             }
         }

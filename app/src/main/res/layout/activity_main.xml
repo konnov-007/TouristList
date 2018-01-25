@@ -12,18 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="showTask"
-        android:text="Задание" />
+        android:text="Исходное задание" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="showDataBase"
         android:text="Показать базу" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Изменить базу" />
 
     <Button
         android:layout_width="match_parent"

@@ -4,120 +4,142 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context="konnov.commr.vk.vpcoursework.ChangeTourActivity"
     android:paddingBottom="12dp"
     tools:layout_editor_absoluteY="81dp">
 
     <ImageView
-        android:id="@+id/imageViewForCustomRow"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:id="@+id/imageViewForChangeTour"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:minHeight="30dp"
         android:minWidth="30dp"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/addpicture"
+        android:clickable="true"
+        android:onClick="changePicture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/countryTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/countryTextViewForChangeTour"
+        android:focusable="true" />
 
     <TextView
-        android:id="@+id/nameTextView"
+        android:id="@+id/nameTextViewForChangeTour"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Название"
         android:textAlignment="center"
-        android:textSize="20sp"
         android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/countryTextView"
+        android:id="@+id/countryTextViewForChangeTour"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Страна"
-        android:textSize="16sp"
         android:textAlignment="center"
         android:textColor="#000000"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/nameTextViewForChangeTour" />
 
-    <TextView
-        android:id="@+id/routeTextView"
+    <EditText
+        android:id="@+id/routeEditTextForChangeTour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Маршрут: "
+        android:layout_marginTop="16dp"
+        android:hint="Маршрут: "
+        android:inputType="textPersonName"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewForCustomRow" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewForChangeTour" />
 
-    <TextView
-        android:id="@+id/durationTextView"
+    <EditText
+        android:id="@+id/durationEditTextForChangeTour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Длительность: "
+        android:hint="Длительность: "
+        android:inputType="textPersonName"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/routeTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/routeEditTextForChangeTour" />
 
-    <TextView
-        android:id="@+id/weatherTextView"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/weatherEditTextForChangeTour"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
-        android:text="Погода: "
+        android:layout_marginTop="40dp"
+        android:hint="Погода: "
+        android:inputType="textPersonName"
         android:textAlignment="center"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/routeTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/routeEditTextForChangeTour" />
 
-    <TextView
-        android:id="@+id/websiteTextView"
+    <EditText
+        android:id="@+id/websiteEditTextForChangeTour"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Сайт: "
+        android:hint="Сайт: "
+        android:inputType="textPersonName"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.01"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backpackTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/backpackEditTextForChangeTour" />
 
-    <TextView
-        android:id="@+id/backpackTextView"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/backpackEditTextForChangeTour"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Взять в дорогу: "
+        android:layout_marginTop="140dp"
+        android:hint="Взять в дорогу: "
+        android:inputType="textPersonName"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weatherTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewForChangeTour" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="changeTour"
+        android:text="Изменить тур"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/websiteEditTextForChangeTour" />
 </android.support.constraint.ConstraintLayout>
