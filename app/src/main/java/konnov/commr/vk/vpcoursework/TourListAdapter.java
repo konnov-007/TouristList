@@ -44,28 +44,61 @@ public class TourListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup viewGroup) {
-        LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View rowMain = layoutInflater.inflate(R.layout.customrow, viewGroup, false);
-        TextView nameTV = rowMain.findViewById(R.id.nameTextView);
-        TextView countryTV = rowMain.findViewById(R.id.countryTextView);
-        TextView routeTV = rowMain.findViewById(R.id.routeTextView);
-        ImageView photo = rowMain.findViewById(R.id.imageView);
-        TextView backpackTV = rowMain.findViewById(R.id.backpackTextView);
-        TextView durationTV = rowMain.findViewById(R.id.durationTextView);
-        TextView weatherTV = rowMain.findViewById(R.id.weatherTextView);
-        TextView websiteTV = rowMain.findViewById(R.id.websiteTextView);
-        getTheList();
+    public View getView(int position, View convertView, ViewGroup viewGroup) {
+        View rowMain;
+        if(convertView == null){
+            LayoutInflater layoutInflater = LayoutInflater.from(context);
+            rowMain = layoutInflater.inflate(R.layout.customrow, viewGroup, false);
 
-        nameTV.setText(arrayLists.get(position).get(0));
-        countryTV.setText(arrayLists.get(position).get(1));
-        routeTV.append(arrayLists.get(position).get(2));
-        photo.setImageBitmap(bitmap[position]);
-        backpackTV.append(arrayLists.get(position).get(4));
-        durationTV.append(arrayLists.get(position).get(5));
-        weatherTV.append(arrayLists.get(position).get(6));
-        websiteTV.append(arrayLists.get(position).get(7));
+            TextView nameTV = rowMain.findViewById(R.id.nameTextView);
+            TextView countryTV = rowMain.findViewById(R.id.countryTextView);
+            TextView routeTV = rowMain.findViewById(R.id.routeTextView);
+            ImageView photo = rowMain.findViewById(R.id.imageView);
+            TextView backpackTV = rowMain.findViewById(R.id.backpackTextView);
+            TextView durationTV = rowMain.findViewById(R.id.durationTextView);
+            TextView weatherTV = rowMain.findViewById(R.id.weatherTextView);
+            TextView websiteTV = rowMain.findViewById(R.id.websiteTextView);
+
+            ViewHolder viewHolder = new ViewHolder(nameTV, countryTV, routeTV, photo, backpackTV, durationTV, weatherTV, websiteTV);
+
+            rowMain.setTag(viewHolder);
+        }else {
+            rowMain = convertView;
+        }
+
+        getTheList();
+        ViewHolder viewHolder = (ViewHolder) rowMain.getTag();
+        viewHolder.nameTV.setText(arrayLists.get(position).get(0));
+        viewHolder.countryTV.setText(arrayLists.get(position).get(1));
+        viewHolder.routeTV.setText("Маршрут: " + arrayLists.get(position).get(2));
+        viewHolder.photo.setImageBitmap(bitmap[position]);
+        viewHolder.backpackTV.setText("Взять в дорогу: " + arrayLists.get(position).get(4));
+        viewHolder.durationTV.setText("Длительность: " + arrayLists.get(position).get(5));
+        viewHolder.weatherTV.setText("Погода: " + arrayLists.get(position).get(6));
+        viewHolder.websiteTV.setText("Сайт: " + arrayLists.get(position).get(7));
         return rowMain;
+    }
+
+
+    private class ViewHolder{
+        TextView nameTV;
+        TextView countryTV;
+        TextView routeTV;
+        ImageView photo;
+        TextView backpackTV;
+        TextView durationTV;
+        TextView weatherTV;
+        TextView websiteTV;
+        private ViewHolder(TextView nameTV, TextView countryTV, TextView routeTV, ImageView photo, TextView backpackTV, TextView durationTV, TextView weatherTV, TextView websiteTV){
+            this.nameTV = nameTV;
+            this.countryTV = countryTV;
+            this.routeTV = routeTV;
+            this.photo = photo;
+            this.backpackTV = backpackTV;
+            this.durationTV = durationTV;
+            this.weatherTV = weatherTV;
+            this.websiteTV = websiteTV;
+        }
     }
 
     private void getTheList(){
@@ -73,17 +106,10 @@ public class TourListAdapter extends BaseAdapter {
         arrayLists = dbHelper.dbToList();
         bitmap = new Bitmap[arrayLists.size()];
         for(int i = 0; i < arrayLists.size(); i++){
-            String response = arrayLists.get(i).get(3);
-            String [] byteValues = response.substring(1, response.length() - 1).split(",");
-            byte[] bytes = new byte[byteValues.length];
-            for (int j=0, len=bytes.length; j<len; j++) {
-                bytes[j] = Byte.parseByte(byteValues[j].trim());
-            }
-            bitmap[i] = Extras.ByteArrayToBitmap(bytes);
+            bitmap[i] = new ImageSaver(context).
+                setFileName(arrayLists.get(i).get(3)).
+                setDirectoryName("images").
+                load();
         }
-
-
-
-
     }
 }

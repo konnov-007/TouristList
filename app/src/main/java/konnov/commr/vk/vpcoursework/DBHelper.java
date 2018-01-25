@@ -41,7 +41,7 @@ public class DBHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_NAME + "(" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME + " VARCHAR, " + COLUMN_COUNTRY + " VARCHAR, " + COLUMN_ROUTE + " VARCHAR, " +
-                COLUMN_PHOTO + " BLOB, " + COLUMN_BACKPACK + " VARCHAR, " + COLUMN_DURATION + " VARCHAR, " + COLUMN_WEATHER + " VARCHAR, " +
+                COLUMN_PHOTO + " VARCHAR, " + COLUMN_BACKPACK + " VARCHAR, " + COLUMN_DURATION + " VARCHAR, " + COLUMN_WEATHER + " VARCHAR, " +
                         COLUMN_WEBSITE + " VARCHAR" + ");") ;
     }
 
@@ -55,7 +55,7 @@ public class DBHelper extends SQLiteOpenHelper{
 
 
 
-    public void insertData(String nameString, String countryString, String routeString, byte [] photo, String backpackString, String durationString, String weatherString, String websiteString){
+    public void insertData(String nameString, String countryString, String routeString, String photo, String backpackString, String durationString, String weatherString, String websiteString){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_NAME, nameString);
@@ -86,12 +86,7 @@ public class DBHelper extends SQLiteOpenHelper{
             innerArrayList.add(c.getString(c.getColumnIndex(COLUMN_NAME)));
             innerArrayList.add(c.getString(c.getColumnIndex(COLUMN_COUNTRY)));
             innerArrayList.add(c.getString(c.getColumnIndex(COLUMN_ROUTE)));
-            byte[] photo;
-
-            photo = c.getBlob(c.getColumnIndex(COLUMN_PHOTO));
-            innerArrayList.add(Arrays.toString(photo));
-
-             ////
+            innerArrayList.add(c.getString(c.getColumnIndex(COLUMN_PHOTO)));
             innerArrayList.add(c.getString(c.getColumnIndex(COLUMN_BACKPACK)));
             innerArrayList.add(c.getString(c.getColumnIndex(COLUMN_DURATION)));
             innerArrayList.add(c.getString(c.getColumnIndex(COLUMN_WEATHER)));
