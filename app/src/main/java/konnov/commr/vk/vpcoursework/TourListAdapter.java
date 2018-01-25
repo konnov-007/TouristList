@@ -1,9 +1,7 @@
 package konnov.commr.vk.vpcoursework;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +24,7 @@ public class TourListAdapter extends BaseAdapter {
     public  TourListAdapter(Context context, int numberOfItems){
         this.context = context;
         this.numberOfItems = numberOfItems;
+        getTheList();
     }
 
     @Override
@@ -53,7 +52,7 @@ public class TourListAdapter extends BaseAdapter {
             TextView nameTV = rowMain.findViewById(R.id.nameTextView);
             TextView countryTV = rowMain.findViewById(R.id.countryTextView);
             TextView routeTV = rowMain.findViewById(R.id.routeTextView);
-            ImageView photo = rowMain.findViewById(R.id.imageView);
+            ImageView photo = rowMain.findViewById(R.id.imageViewForCustomRow);
             TextView backpackTV = rowMain.findViewById(R.id.backpackTextView);
             TextView durationTV = rowMain.findViewById(R.id.durationTextView);
             TextView weatherTV = rowMain.findViewById(R.id.weatherTextView);
@@ -65,8 +64,6 @@ public class TourListAdapter extends BaseAdapter {
         }else {
             rowMain = convertView;
         }
-
-        getTheList();
         ViewHolder viewHolder = (ViewHolder) rowMain.getTag();
         viewHolder.nameTV.setText(arrayLists.get(position).get(0));
         viewHolder.countryTV.setText(arrayLists.get(position).get(1));

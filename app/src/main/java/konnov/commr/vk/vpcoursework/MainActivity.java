@@ -42,11 +42,11 @@ public class MainActivity extends AppCompatActivity {
 //                setDirectoryName("images").
 //                load();
 
-        DBHelper dbHelper = new DBHelper(this);
-        dbHelper.deleteDB();
-        dbHelper.insertData("Средиземный курорт", "Испания", "Новосибирск - Барселона", "spainpic.png", "штаны и зубная паста", "30  дней", "29 градусов", "spain.com");
-        dbHelper.insertData("Пицца, паста, Ватикан", "Италия", "Новосибирск - Москва - Рим", "italypic.png", "кетчуп хайнц, ламборгини и футболка D&G", "2  недели", "25 градусов", "experienceitaly.com");
-        dbHelper.insertData("Эта СПАРТА", "Греция", "Новосибирск - Москва - Афины", "greecepic.png", "Копье для защиты спарты", "5 дней", "32 градуса", "thisissparta.com");
+//        DBHelper dbHelper = new DBHelper(this);
+//        dbHelper.deleteDB();
+//        dbHelper.insertData("Средиземный курорт", "Испания", "Новосибирск - Барселона", "spainpic.png", "штаны и зубная паста", "30  дней", "29 градусов", "spain.com");
+//        dbHelper.insertData("Пицца, паста, Ватикан", "Италия", "Новосибирск - Москва - Рим", "italypic.png", "кетчуп хайнц, ламборгини и футболка D&G", "2  недели", "25 градусов", "experienceitaly.com");
+//        dbHelper.insertData("Эта СПАРТА", "Греция", "Новосибирск - Москва - Афины", "greecepic.png", "Копье для защиты спарты", "5 дней", "32 градуса", "thisissparta.com");
 
 
     }
@@ -59,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
     public void showDataBase(View view) {
         startActivity(new Intent(this, TourListActivity.class)); //displaying the list of tours
 
+    }
+
+    public void newTour(View view) {
+        startActivity(new Intent(this, NewTourActivity.class)); //displaying the list of tours
     }
 }
 
