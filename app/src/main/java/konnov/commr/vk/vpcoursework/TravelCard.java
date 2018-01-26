@@ -9,6 +9,9 @@ import android.os.Build;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -61,7 +64,6 @@ public class TravelCard extends AppCompatActivity {
             if(ticketPic == null)
                 ticketIV.setImageDrawable(getResources().getDrawable(R.drawable.addpicture));
         }
-        
     }
 
     public void saveChanges(View view) {
@@ -76,6 +78,7 @@ public class TravelCard extends AppCompatActivity {
                 setDirectoryName(DIRECTORY_NAME).
                 save(ticketPic);
         sharedPreferenceHelper.saveInSharedPref(descriptionET.getText().toString(), notesET.getText().toString(), websitesET.getText().toString(), PASSPORT_IMG_NAME, TICKET_IMG_NAME);
+        Toast.makeText(this, "Сохранено", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -135,4 +138,22 @@ public class TravelCard extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.travel_card_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        SharedPreferenceHelper sharedPreferenceHelper = new SharedPreferenceHelper(this);
+        sharedPreferenceHelper.deleteall();
+        passportIV.setImageDrawable(getResources().getDrawable(R.drawable.addpicture));
+        ticketIV.setImageDrawable(getResources().getDrawable(R.drawable.addpicture));
+        descriptionET.setText("");
+        notesET.setText("");
+        websitesET.setText("");
+        return super.onOptionsItemSelected(item);
+    }
 }

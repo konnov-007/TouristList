@@ -50,11 +50,23 @@ public class SharedPreferenceHelper {
         arrayList.add(sharedPref.getString(PASSPORT, DEFAULT_VALUE));
         arrayList.add(sharedPref.getString(TICKET, DEFAULT_VALUE));
 
-        if(!arrayList.get(0).equals(DEFAULT_VALUE) && !arrayList.get(1).equals(DEFAULT_VALUE) && !arrayList.get(2).equals(DEFAULT_VALUE) &&
-                !arrayList.get(3).equals(DEFAULT_VALUE) && !arrayList.get(4).equals(DEFAULT_VALUE))
-            return arrayList;
-        else
-            return null;
+//        if(!arrayList.get(0).equals(DEFAULT_VALUE) && !arrayList.get(1).equals(DEFAULT_VALUE) && !arrayList.get(2).equals(DEFAULT_VALUE) &&
+//                !arrayList.get(3).equals(DEFAULT_VALUE) && !arrayList.get(4).equals(DEFAULT_VALUE))
+        return arrayList;
+//        else
+//            return null;
+    }//TODO можно сделать чтобы сохранялось значение при пустых полях
+
+
+
+    public void deleteall(){
+        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+        sharedPref.edit().remove(DESCRIPTION).commit();
+        sharedPref.edit().remove(NOTES).commit();
+        sharedPref.edit().remove(WEBSITES).commit();
+        sharedPref.edit().remove(PASSPORT).commit();
+        sharedPref.edit().remove(TICKET).commit();
+
     }
 }
 
